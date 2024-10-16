@@ -1,0 +1,212 @@
+from lista_personas.listas_personas import nombres, edades, mails, address, postalZip, region, country,telefonos
+from funciones.Busqueda import *
+
+def pais_users(busqueda: str,country: list,nombre: list, edades: list,mails: list,addres: list,postalZip: list,region: list, telefonos: list):
+    '''
+    Recorres la lista y busca si hay una coincidencia con el pais 'Mexico' y muestra todos los
+    datos de este usuario
+    '''
+    print(f'Datos de todos aquellos que sean de MX')
+    for i in range(len(country)):
+        
+        if country[i] == busqueda:
+          
+            print(f'-' * 30)
+            print(f'Nombre: {nombre[i]}\n' 
+                  f'Edad: {edades[i]}\n'
+                  f'Mails: {mails[i]}\n'
+                  f'Addres: {addres[i]}\n'
+                  f'PostalZip: {postalZip[i]}\n'
+                  f'Region: {region[i]}\n'
+                  f'Telefonos: {telefonos[i]}\n'
+                  f'Country: {country[i]}\n')
+        
+def brasil_users(busqueda: str,country: list,nombre:list,edad: list,mails: list, telefonos:list):
+    '''
+    Recibe el dato a buscar y imprime el nombre, edad, mail y telefono
+    '''
+    print(f'Usuarios de Brazil')
+    for i in range(len(country)):
+        
+        if country[i] == busqueda:
+            
+            print(f'-' * 30)
+            print(f'Nombre: {nombre[i]}\n'
+                  f'Edad: {edad[i]}\n'
+                  f'Mail: {mails[i]}\n'
+                  f'Telefono: {telefonos[i]}\n')
+            
+
+def datos_menores(country: list,nombre: list, edades: list,mails: list,addres: list,postalZip: list,region: list, telefonos: list):
+    
+    print(f'---------- Datos de los menores ----------')
+    menores = buscar_menores(edades)
+    
+    for i in range(len(edades)):
+        if edades[i] in menores:
+            print('-' * 30)
+            print(f'Nombre: {nombre[i]}\n'
+                  f'Edad: {edades[i]}\n'
+                  f'Mail: {mails[i]}\n'
+                  f'Country: {country[i]}\n'
+                  f'Addres: {addres[i]}\n'
+                  f'PostalZip: {postalZip[i]}\n'
+                  f'Region: {region[i]}\n'
+                  f'Telefono: {telefonos[i]}\n')
+            print('-' * 30) 
+            
+def maximo_num(lista: list):
+    if not lista:  
+        return None  
+    
+    minimo = lista[0]  
+    
+    for numero in lista:
+        if numero > minimo:
+            minimo = numero 
+    
+    return minimo
+
+def buscar_mayores(lista: list)-> list:
+    coincidencias = []  # Lista local
+    maximo = maximo_num(lista)  # Encontrar el valor mínimo en la lista
+
+    for numero in lista:
+        if numero == maximo:
+            coincidencias.append(numero)  # Agregar el número si es igual al mínimo
+
+    return coincidencias
+
+def datos_mayor(country: list,nombre: list, edades: list,mails: list,addres: list,postalZip: list,region: list, telefonos: list):
+    
+    print(f'---------- DATOS MAYORES DE EDAD DE BRASIL ----------')
+    mayores = buscar_mayores(edades)
+    
+    
+            
+    for i in range(len(edades)):
+        
+        if edades[i] in mayores:
+            for i in range(len(country)):
+                if country[i] == 'Brazil':
+                    
+                    print('-' * 45)
+                    print(f'Nombre: {nombre[i]}\n'
+                        f'Edad: {edades[i]}\n'
+                        f'Country: {country[i]}\n'
+                        f'Addres: {addres[i]}\n'
+                        f'PostalZip: {postalZip[i]}\n'
+                        f'Region: {region[i]}\n'
+                        f'Telefono: {telefonos[i]}\n')
+                    print('-' * 45)
+                    
+def postal_mayor(postalZip: list,nombre: list,edades: list,country: list,telefonos: list,mails: list,address:list, region:list):
+    for i in range(len(postalZip)):
+        if postalZip[i] >= 8000 and (country[i] == 'Mexico'or country[i] == 'Brazil'):
+                    print('-'* 45)
+                    print(f'Nombre: {nombre[i]}\n'
+                          f'Country: {country[i]}\n'
+                          f'Postal: {postalZip[i]}\n'
+                          f'Edad: {edades[i]}\n'
+                          f'Teléfono: {telefonos[i]}\n'
+                          f'Email: {mails[i]}\n'
+                          f'Address: {address[i]}\n'
+                          f'region: {region[i]}\n') 
+                    
+                    
+def italianos(country: list, nombre: list, edades: list, mails: list, address: list, postalZip: list, region: list, telefonos: list):
+    encontrados = False
+    for i in range(len(country)):
+        if country[i] == 'Italy' and edades[i] >= 80:
+            print('-' * 45)
+            print(f'Nombre: {nombre[i]}\n'
+                  f'Country: {country[i]}\n'
+                  f'Postal: {postalZip[i]}\n'
+                  f'Edad: {edades[i]}\n'
+                  f'Teléfono: {telefonos[i]}\n'
+                  f'Email: {mails[i]}\n'
+                  f'Address: {address[i]}\n'
+                  f'Region: {region[i]}\n')
+            encontrados = True
+
+    if encontrados == False:
+        print('No se econtraron Italianos mayores a 80')
+
+
+def ordenar_asc_mx(busqueda:str,nombres: list, country: list,edades: list, mails: list, address: list, postalZip: list, region: list, telefonos: list):
+    
+    
+    print(f'Usuarios Mexicanos oredenados por nombre')
+    mexico_users = []
+    for i in range(len(country)):
+        if country[i] == busqueda:
+            mexico_users.append((nombres[i], edades[i],mails[i], address[i], postalZip[i], region[i], telefonos[i]))
+    
+    cambio = True
+    while cambio:
+        cambio = False
+        
+        for i in range(len(mexico_users) - 1):
+            if mexico_users[i][0] > mexico_users[i +1][0]:
+                mexico_users[i], mexico_users[i + 1] = mexico_users[i +1], mexico_users[i]
+                
+    for i in range(len(mexico_users)):
+            nombres = mexico_users[i][0] #[0] = posisicon 0
+            edad = mexico_users[i][1]
+            mail = mexico_users[i][2]
+            direccion = mexico_users[i][3]
+            postal = mexico_users[i][4]
+            region = mexico_users[i][5]
+            telefono = mexico_users[i][6]
+            
+            print(f'Nombre: {nombres}\n'
+                f'Edad: {edad}\n'
+                f'Email: {mail}\n'
+                f'Dirección: {direccion}\n'
+                f'Código Postal: {postal}\n'
+                f'Region: {region}\n'
+                f'Teléfono: {telefono}\n'
+                f'País: Mexico\n'
+                f'-------------------------') 
+            
+#Listar los datos del/los usuario/s más joven/es ordenados por edad de manera ascendente   
+ 
+
+def ordenar_ascendentemente_edades(nombres, edades, country, mails, address, postalZip, region, telefonos):
+    '''
+    Ordena las listas por edades de forma ascendente.
+    '''
+    for i in range(len(edades)):
+        for j in range(i + 1, len(edades)):
+            if edades[i] > edades[j]:
+                # Intercambiar edades
+                edades[i], edades[j] = edades[j], edades[i]
+                # Intercambiar el resto de los datos para que sigan el orden de las edades
+                nombres[i], nombres[j] = nombres[j], nombres[i]
+                country[i], country[j] = country[j], country[i]
+                mails[i], mails[j] = mails[j], mails[i]
+                address[i], address[j] = address[j], address[i]
+                postalZip[i], postalZip[j] = postalZip[j], postalZip[i]
+                region[i], region[j] = region[j], region[i]
+                telefonos[i], telefonos[j] = telefonos[j], telefonos[i]
+
+def lista_edad(nombres: list, country: list, edades: list, mails: list, address: list, postalZip: list, region: list, telefonos: list):
+    '''
+    Lista los datos de los usuarios más jóvenes ordenados por edad de manera ascendente.
+    '''
+    # Ordenar todos los datos por edades ascendentemente
+    ordenar_ascendentemente_edades(nombres, edades, country, mails, address, postalZip, region, telefonos)
+    indices_menores = buscar_menores(edades)
+
+    # Imprimir los datos de los usuarios más jóvenes
+    for i in range(len(indices_menores)):
+        
+        print(f"Nombre: {nombres[i]}\n" 
+              f"Edad: {edades[i]}\n"
+              f"País: {country[i]}\n"
+              f"Email: {mails[i]}\n"
+              f"Dirección: {address[i]}\n"
+              f"Código Postal: {postalZip[i]}\n"
+              f"Región: {region[i]}\n"
+              f"Teléfono: {telefonos[i]}\n")
+ 

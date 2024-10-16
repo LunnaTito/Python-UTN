@@ -179,9 +179,10 @@ def ordenar_ascendentemente_edades(nombres, edades, country, mails, address, pos
     for i in range(len(edades)):
         for j in range(i + 1, len(edades)):
             if edades[i] > edades[j]:
-                # Intercambiar edades
+
+
                 edades[i], edades[j] = edades[j], edades[i]
-                # Intercambiar el resto de los datos para que sigan el orden de las edades
+               
                 nombres[i], nombres[j] = nombres[j], nombres[i]
                 country[i], country[j] = country[j], country[i]
                 mails[i], mails[j] = mails[j], mails[i]

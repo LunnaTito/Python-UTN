@@ -1,0 +1,182 @@
+from funciones import *
+import funciones
+import funciones.main
+import funciones.Input
+import listas
+'''
+Luna Ariadna Tito
+Div.213
+------ ORDENAMIENTOS ------
+Ejercicio 1: Dadas las siguientes listas:
+
+Desarrollar una función que realice el ordenamiento de las listas por nombre de 
+manera ascendente.
+'''
+nombres = ["Ana","Luis","Juan","Sol","Roberto","Sonia","Ulises","Sofia","Maria","Pedro","Antonio", "Eugenia", "Soledad", "Mario", "Mariela"]
+edades = [23,45,34,23,46,23,45,67,37,68,25,55,45,27,43]
+
+def ordenar_ascendentemente(nombres: list, edades: list):
+    
+    bandera = False
+    while not bandera:
+        bandera = True
+        for i in range(len(nombres) - 1):
+            if nombres[i] > nombres[i + 1]:
+                nombres[i], nombres[i + 1] = nombres[i + 1], nombres[i]
+                edades[i], edades[i + 1] = edades[i + 1], edades[i]
+                bandera = False
+
+# ordenar_ascendentemente(nombres, edades) 
+# print(nombres)
+# print(edades)
+
+'''
+Luna Ariadna Tito
+Dic.213
+
+------ ORDENAMIENTOS ------
+Desarrollar una función que realice el ordenamiento de las listas por nombre de 
+manera ascendente, si el nombre es el mismo, debe ordenar por puntos de manera 
+descendente.
+'''
+materias = ["Matematica","Investigacion Operativa","Ingles","Literatura","Ciencias Sociales"
+           ,"Computacion","Ingles","Algebra","Contabilidad","Artistica", "Algoritmos",
+           "Base de Datos", "Ergonomia", "Naturaleza"]
+
+puntos = [100,98,56,25,87,38,64,42,28,91,66,35,49,57,98]
+
+def ordenar_asc(nombres: list, puntos: list):
+    cambios = True
+    while cambios == True:
+            cambios = False
+            for i in range(len(nombres) - 1):
+                if nombres[i] > nombres[i + 1]:
+                    nombres[i], nombres[i + 1] = nombres[i + 1], nombres[i]
+                    puntos[i], puntos[i + 1] = puntos[i + 1], puntos[i]
+                    cambios = True
+                elif nombres[i] == nombres[i + 1]:
+                    print(True)
+                    if puntos[i] < puntos[i + 1]:
+                        puntos[i], puntos[i + 1] = puntos[i + 1], puntos[i]
+                        cambios = True
+
+# ordenar_asc(materias,puntos)
+# print(materias)
+# print(puntos)
+
+'''
+Luna Ariadna Tito
+Div.213
+
+Desarrollar una función que realice el ordenamiento de las listas por apellido de 
+manera ascendente, si el apellido es el mismo, debe ordenar por nombre de manera 
+ascendente, si el nombre también es el mismo, debe ordenar por nota de manera 
+descendente.
+'''
+# estudiantes = ["Ana","Luis","Juan","Sol","Roberto","Sonia","María","Sofia","Maria","Pedro","Antonio", "Eugenia", "Soledad", "Mario", "María"]
+# apellidos = ["Sosa","Gutierrez","Alsina","Martinez","Sosa","Ramirez","Perez","Lopez","Arregui","Mitre","Andrade","Loza","Antares","Roca","Perez"]
+# nota = [8,4,9,10,8,6,4,8,7,5,6,7,10,4,8]
+
+def ordenar_asc_apellidos(apellidos: list ,estudiantes: list,nota:list):
+    
+    bandera = False
+    while bandera == False:
+
+        bandera = True
+        for i in range(len(apellidos) - 1):
+            if apellidos[i] > apellidos[i + 1]:
+                apellidos[i], apellidos[i + 1] = apellidos[i + 1], apellidos[i]
+                estudiantes[i], estudiantes[i + 1] = estudiantes[i + 1], estudiantes[i]
+                nota[i], nota[i + 1] = nota[i + 1], nota[i]
+                bandera = False
+
+            elif apellidos[i] == apellidos[i + 1]:
+                
+                if estudiantes[i] > estudiantes[i + 1]:
+                    estudiantes[i], estudiantes[i + 1] = estudiantes[i + 1], estudiantes[i]
+                    nota[i], nota[i + 1] = nota[i + 1], nota[i]
+                    bandera = False
+
+                elif estudiantes[i] == estudiantes[i + 1]:
+                    
+                    if nota[i] < nota[i + 1]:
+                        nota[i], nota[i + 1] = nota[i + 1], nota[i]
+                        bandera = False
+
+# ordenar_asc_apellidos(apellidos,estudiantes,nota)
+# print(apellidos)
+# print(estudiantes)
+# print(nota)
+
+'''
+Luna Ariadna Tito
+Div.213
+
+Una startup desea analizar las estadísticas de los usuarios de su sitio de 
+compras on-line recientemente lanzado al mercado para ello necesita un programa 
+que le permita acceder a los datos relevados.
+'''
+
+opciones = ['Importar listas','Listar los datos de los usuarios de México','Listar los nombre, mail y teléfono de los usuarios de Brasil','Listar los datos del/los usuario/s más joven/es',
+            'Obtener un promedio de edad de los usuarios','De los usuarios de Brasil, listar los datos del usuario de mayor edad',
+            'Listar los datos de los usuarios de México y Brasil cuyo código postal sea mayor a 8000',
+            'Listar nombre, mail y teléfono de los usuarios italianos mayores a 40 años.',
+            'Listar los datos de los usuarios de México ordenados por nombre',
+            'Listar los datos del/los usuario/s más joven/es ordenados por edad de manera ascendente',
+            'Listar los datos de los usuarios de México y Brasil cuyo código postal sea mayor a 8000 ordenado por nombre y edad de manera descendente\n']
+
+import listas
+from lista_personas.listas_personas import *
+import os 
+
+funciones.main.menu(opciones)
+elegida = input('Ingresar opcion elegida: ')
+opcion = 's'
+
+while opcion == 's':
+    match elegida:
+        case '1':
+            os.system('cls')
+            from lista_personas.listas_personas import nombres, edades, mails, address, postalZip, region, country,telefonos
+
+        case '2':
+            os.system('cls') 
+            listas.pais_users('Mexico',country, nombres, edades,mails, address, postalZip, region, telefonos)
+            
+            break
+        case '3':
+            os.system('cls') 
+            listas.brasil_users('Brazil',country, nombres, edades,mails,telefonos)
+            break
+        case '4':
+            os.system('cls')
+            listas.datos_menores(country, nombres, edades,mails, address, postalZip, region, telefonos)
+            break
+        case '5':
+            os.system('cls')
+            print(f'El promedio de edades es: {listas.calcular_promedio(edades)}')
+            break
+        case '6':
+            os.system('cls')
+            listas.datos_mayor(country, nombres, edades,mails, address, postalZip, region, telefonos)
+            break
+        case '7':
+            os.system('cls')
+            print({listas.postal_mayor(postalZip,nombres,edades,country,telefonos,mails,address,region)}) 
+            break 
+        case '8':
+            os.system('cls')
+            print(listas.italianos(country, nombres,edades,mails,address,postalZip,region,telefonos))
+            break 
+        case '9':
+            os.system('cls')
+            print(listas.ordenar_asc_mx('Mexico',nombres,country,edades,mails,address,postalZip,region,telefonos))
+            break
+        case '10':
+            os.system('cls')
+            listas.lista_edad(nombres,country,edades,mails,address,postalZip,region,telefonos)
+            break
+        case '11':
+            os.system('cls')
+            
+            break
